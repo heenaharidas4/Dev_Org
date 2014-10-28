@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <customSettingsVisibility>Protected</customSettingsVisibility>
+    <description>Settings for the Local Time Application. Normally the values are accessed and set by the System Administrator only at the organization level.</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Abbreviation__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to show time zone abbreviation next to the local time (PST, EST etc).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enable this option if you want to show time zone abbreviation next to the local time (PST, EST etc).</inlineHelpText>
+        <label>Time Zone Short Name</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Account_Fields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comma separated account fields (Country, State, City, Phone).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comma separated account fields (Country, State, City, Phone).</inlineHelpText>
+        <label>Account Fields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Phone__c</fullName>
+        <defaultValue>&quot;Phone&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Select which field to use for phone number in the Account object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select which field to use for phone number in the Account object.</inlineHelpText>
+        <label>Account Phone</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Africa_DST__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to start using daylight saving time. Normally this value is set twice an year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DST is the practice of temporarily advancing clocks during the summer time so that afternoons have more daylight and mornings have less. Typically clocks are adjusted forward one hour near the start of spring and are adjusted backward in autumn.</inlineHelpText>
+        <label>Africa - Enable/Disable DST</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Asia_DST__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to start using daylight saving time. Normally this value is set twice an year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DST is the practice of temporarily advancing clocks during the summer time so that afternoons have more daylight and mornings have less. Typically clocks are adjusted forward one hour near the start of spring and are adjusted backward in autumn.</inlineHelpText>
+        <label>Asia - Enable/Disable DST</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contact_Fields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comma separated contact fields (Country, State, City, Phone).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comma separated contact fields (Country, State, City, Phone).</inlineHelpText>
+        <label>Contact Fields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Phone__c</fullName>
+        <defaultValue>&quot;Phone&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Select which field to use for phone number in the Contact object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select which field to use for phone number in the Contact object.</inlineHelpText>
+        <label>Contact Phone</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DST_Automatic__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable the checkbox if you want the App to automatically identify DST settings (Recommended).
+
+Disable the checkbox if you want to manually define DST settings for different regions.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enable the checkbox if you want the App to automatically identify DST settings (Recommended).
+
+Disable the checkbox if you want to manually define DST settings for different regions.</inlineHelpText>
+        <label>DST Automatic</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Triggers__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Check this option if you are performing large data loads and temporarily want to disable all the Apex triggers belonging to the App.
+
+Make sure to un-check this option after the data load is completed so that triggers will run as usual.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option if you are performing large data loads and temporarily want to disable all the Apex triggers belonging to the App.
+
+Make sure to un-check this option after the data load is completed so that triggers will run as usual.</inlineHelpText>
+        <label>Disable Triggers</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_UTC_Offset__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The UTC offset (offset from Coordinated Universal Time) is the difference in hours and minutes from Coordinated Universal Time (UTC) for a particular time. Enable this option if you would like the UTC Offset custom field in Accounts, Leads, and Contacts populated.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enable to populate the UTC Offset custom field in Accounts, Leads, and Contacts.
+
+The UTC offset is the difference in hours and minutes from Coordinated Universal Time (UTC) for a particular time.</inlineHelpText>
+        <label>UTC Offset</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Europe_DST__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to start using daylight saving time. Normally this value is set twice an year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DST is the practice of temporarily advancing clocks during the summer time so that afternoons have more daylight and mornings have less. Typically clocks are adjusted forward one hour near the start of spring and are adjusted backward in autumn.</inlineHelpText>
+        <label>Europe - Enable/Disable DST</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Format__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Display format for the time. Leave the field blank to use the system default format.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Display format for the time. Leave the field blank to use the system default format.</inlineHelpText>
+        <label>Display Format</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Frequency__c</fullName>
+        <defaultValue>60</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Input a value to indicate how frequently you want to update the time shown by the Local Time button.
+
+Negative values are not valid.
+
+Example: 10. This means the time value is updated every 10 seconds. If the current time is 10:20:10 AM, then the next value shown is 10:20:20 AM, and then 10:20:30 AM after 10 seconds and so on.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This value indicates how frequently you want to update the time shown by the Local Time button.
+A lower value will update the time value more frequently but might consume more browser resources than a higher frequency value.</inlineHelpText>
+        <label>Frequency (Seconds)</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Id__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Start_Time__c</fullName>
+        <defaultValue>&quot;03&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Job Start Time</label>
+        <length>6</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Fields__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comma separated lead fields (Country, State, City, Phone).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comma separated lead fields (Country, State, City, Phone).</inlineHelpText>
+        <label>Lead Fields</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead_Phone__c</fullName>
+        <defaultValue>&quot;Phone&quot;</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Select which field to use for phone number in the Lead object.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select which field to use for phone number in the Lead object.</inlineHelpText>
+        <label>Lead Phone</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NA_DST__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to start using daylight saving time. Normally this value is set twice an year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DST is the practice of temporarily advancing clocks during the summer time so that afternoons have more daylight and mornings have less. Typically clocks are adjusted forward one hour near the start of spring and are adjusted backward in autumn.</inlineHelpText>
+        <label>North America - Enable/Disable DST</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Oceania_DST__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to start using daylight saving time. Normally this value is set twice an year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DST is the practice of temporarily advancing clocks during the summer time so that afternoons have more daylight and mornings have less. Typically clocks are adjusted forward one hour near the start of spring and are adjusted backward in autumn.</inlineHelpText>
+        <label>OCEANIA - Enable/Disable DST</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Phone_First__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>By default the App checks first the billing address and then the phone number to compute Local Time.
+
+Enable the checkbox to reverse this order.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>By default the App checks first the billing address and then the phone number to compute Local Time.
+
+Enable the checkbox to reverse this order.</inlineHelpText>
+        <label>Phone First?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SA_DST__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Enable this option if you want to start using daylight saving time. Normally this value is set twice an year.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>DST is the practice of temporarily advancing clocks during the summer time so that afternoons have more daylight and mornings have less. Typically clocks are adjusted forward one hour near the start of spring and are adjusted backward in autumn.</inlineHelpText>
+        <label>South America - Enable/Disable DST</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Local Time App Settings</label>
+</CustomObject>

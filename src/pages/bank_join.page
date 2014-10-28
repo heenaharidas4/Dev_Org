@@ -1,0 +1,42 @@
+<apex:page standardController="Account_Detail__c" showHeader="false" extensions="JoinExtension">
+    <apex:form >
+    <apex:image id="theImage" url="https://c.na9.content.force.com/servlet/servlet.FileDownload?file=015E00000011uLC" width="300" height="65"/>
+        <apex:pageBlock >
+        
+        <apex:pageBlockSection title="Account you want to search: ">
+            <apex:inputText label="Contact Id :" value="{!Id}"/> <br/>
+        </apex:pageBlockSection>
+       
+        <apex:pageBlockSection title="Contact Information: ">
+             <!--  <apex:inputText label="Contact Id :" value="{!Id}"/> <br/> -->
+               <apex:inputText label="Name :" value="{!cname}"/> <br/>
+               <apex:inputText label="Address :" value="{!address}"/> <br/>
+           </apex:pageBlockSection> 
+       
+        
+        <apex:pageBlockSection title="Account Information: ">
+             <!-- <apex:inputText label="Account Id :" value="{!AId}"/> <br/> -->
+               <apex:inputText label="Account Number :" value="{!AccNo}"/> <br/>
+               <apex:inputText label="Balance :" value="{!balance}"/> <br/>
+               <apex:inputText label="Type :" value="{!type}"/> <br/>
+               
+           </apex:pageBlockSection> 
+        
+       
+
+         
+           <apex:pageBlockButtons >
+            
+            <apex:commandButton value="Fetch" action="{!fetch}" />
+              
+            </apex:pageBlockButtons>
+        </apex:pageBlock> 
+    </apex:form>
+           
+            <apex:pageBlock > 
+                <apex:pageBlockSection title="Display Error" >
+                   <apex:outputText value="{!msg}" style="color:Red; font-weight:bold; font-style:italic"/> <br/>
+                </apex:pageBlockSection> 
+            </apex:pageBlock> 
+            
+</apex:page>

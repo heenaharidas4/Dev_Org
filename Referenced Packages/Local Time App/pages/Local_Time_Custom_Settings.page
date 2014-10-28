@@ -1,0 +1,98 @@
+<apex:page controller="tz.LocalTimeCustomSettingsController" tabStyle="Local_Time__tab" sidebar="false">
+    <apex:sectionHeader title="Local Time App" subtitle="Customize Settings"/>
+<style type="text/css">
+table.tftable {width:95%;border:1px solid #f3f3ec;border-collapse: collapse;margin-left:1%;}
+table.tftable td {padding: 10px 10px 10px 10px;border:1px solid #f3f3ec;border-collapse: collapse;}
+</style>
+<apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton action="{!save}" value="Save" status="lt_msg" reRender="lt_status"/>
+                <apex:commandButton action="{!cancel}" value="Cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="General Options" columns="2" id="pageBlock1">
+                <apex:inputField value="{!mc.tz__Abbreviation__c}"/>
+                <apex:inputField value="{!mc.tz__Phone_First__c}"/>
+
+                <apex:inputField value="{!mc.tz__DST_Automatic__c}">
+                    <apex:actionsupport event="onchange" rerender="pageBlock2" />
+                </apex:inputField>               
+                <apex:inputField value="{!mc.tz__Disable_Triggers__c}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection showHeader="false" title="Manual DST Settings" columns="2" id="pageBlock2">
+                <apex:inputField value="{!mc.tz__NA_DST__c}" rendered="{!NOT(mc.tz__DST_Automatic__c)}"/>
+                <apex:inputField value="{!mc.tz__SA_DST__c}" rendered="{!NOT(mc.tz__DST_Automatic__c)}"/>
+                <apex:inputField value="{!mc.tz__Europe_DST__c}" rendered="{!NOT(mc.tz__DST_Automatic__c)}"/>
+                <apex:inputField value="{!mc.tz__Asia_DST__c}" rendered="{!NOT(mc.tz__DST_Automatic__c)}"/>
+                <apex:inputField value="{!mc.tz__Oceania_DST__c}" rendered="{!NOT(mc.tz__DST_Automatic__c)}"/>
+                <apex:inputField value="{!mc.tz__Africa_DST__c}" rendered="{!NOT(mc.tz__DST_Automatic__c)}"/>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Address & Phone Fields" columns="1">
+                <apex:outputText value="The Local Time App uses address and phone fields to compute the local time. Specify the appropriate fields (text or phone data type only) to be used for the following objects." />
+                <apex:outputText value="It is your responsibility to select a field which has proper values. The following fields are currently being used. No changes necessary if you are OK with the default address and phone fields." />
+            </apex:pageBlockSection>
+
+            <table id="custom_fields" class="tftable">
+                <tr>
+                    <th class="pbSubheader brandTertiaryBgr tertiaryPalette" width="20%">Object</th>
+                    <th class="pbSubheader brandTertiaryBgr tertiaryPalette" width="20%">Country</th>
+                    <th class="pbSubheader brandTertiaryBgr tertiaryPalette" width="20%">State</th>            
+                    <th class="pbSubheader brandTertiaryBgr tertiaryPalette" width="20%">City</th>            
+                    <th class="pbSubheader brandTertiaryBgr tertiaryPalette" width="20%">Phone</th>
+                </tr>            
+                <tr>
+                    <td>Account</td>
+                    <td><apex:selectList value="{!acctValues[0]}" size="1"><apex:selectOptions value="{!acctFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!acctValues[1]}" size="1"><apex:selectOptions value="{!acctFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!acctValues[2]}" size="1"><apex:selectOptions value="{!acctFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!acctValues[3]}" size="1"><apex:selectOptions value="{!acctFields}"/></apex:selectList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lead</td>
+                    <td><apex:selectList value="{!leadValues[0]}" size="1"><apex:selectOptions value="{!leadFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!leadValues[1]}" size="1"><apex:selectOptions value="{!leadFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!leadValues[2]}" size="1"><apex:selectOptions value="{!leadFields}"/></apex:selectList>
+                    </td>      
+                    <td><apex:selectList value="{!leadValues[3]}" size="1"><apex:selectOptions value="{!leadFields}"/></apex:selectList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact</td>
+                    <td><apex:selectList value="{!ctValues[0]}" size="1"><apex:selectOptions value="{!ctFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!ctValues[1]}" size="1"><apex:selectOptions value="{!ctFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!ctValues[2]}" size="1"><apex:selectOptions value="{!ctFields}"/></apex:selectList>
+                    </td>
+                    <td><apex:selectList value="{!ctValues[3]}" size="1"><apex:selectOptions value="{!ctFields}"/></apex:selectList>
+                    </td>
+                </tr>
+            </table>
+               
+            <apex:pageBlockSection title="Support" columns="2">
+                <apex:outputLabel style="font-weight:bold;color:#4a4a56;" value="Online" />
+                <apex:outputLink value="http://www.success-software.biz/products/local-time/frequently-asked-questions/" target="_blank">FAQ</apex:outputLink>
+                <apex:outputLabel style="font-weight:bold;color:#4a4a56;" value="Email" />
+                <apex:outputLink value="mailto:info@success-software.biz">info@success-software.biz</apex:outputLink>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection columns="1">
+                <apex:outputPanel id="lt_status">          
+                <apex:actionStatus id="lt_msg">
+                    <apex:facet name="start">The settings are being saved. Please wait...
+                        <img src="/apexpages/devmode/img/saveStatus.gif"/>
+                    </apex:facet>         
+                </apex:actionStatus>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

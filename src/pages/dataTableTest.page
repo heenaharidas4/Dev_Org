@@ -1,0 +1,18 @@
+<apex:page controller="TestController">
+    <apex:form >
+Name: <apex:inputText value="{!Names}" />
+<apex:commandButton value="Add" action="{!AddNames}"/>
+<table border="5">
+
+ <tr> 
+     <td><b>Name</b></td>
+     <td><b> Entered Date</b> </td>
+    </tr>
+<apex:repeat value="{!wrapper.studentData}" var="stu">
+<tr> 
+    <td> <apex:outputText value="{!stu.Name}"/></td>
+    <td> <apex:outputText value="{!stu.DateCreated}"/></td></tr>
+</apex:repeat>
+</table>
+    </apex:form>
+</apex:page>

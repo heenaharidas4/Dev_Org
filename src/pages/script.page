@@ -1,0 +1,5 @@
+<apex:page contentType="text/xml" cache="false" expires="0">
+function MyScript() {
+     alert('Yahoo! No more static resource uploads!);
+}
+</apex:page>

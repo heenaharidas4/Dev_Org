@@ -1,0 +1,56 @@
+<apex:page standardController="Test__c" showHeader="false" extensions="SortExtension">
+    <apex:form >
+    <apex:image id="theImage" url="https://c.na9.content.force.com/servlet/servlet.FileDownload?file=015E00000011uLC" width="300" height="65"/>
+        <apex:pageBlock >
+             
+        <apex:pageBlockSection title="Contact Information: ">
+        
+         <apex:dataTable value="{!output_sorted}" var="Test__c" id="theTable" rowClasses="odd,even"
+
+                        styleClass="tableClass">
+         <apex:facet name="caption">Test Record</apex:facet>
+
+             <!--   <apex:facet name="header">table header</apex:facet>
+
+                <apex:facet name="footer">table footer</apex:facet> -->
+
+                <apex:column >
+
+                        <apex:facet name="header">Contact Id </apex:facet> 
+
+                   <!--     <apex:facet name="footer">column footer</apex:facet> -->
+
+                      <apex:outputText value="{!output}"/> 
+
+                </apex:column>
+
+                <apex:column >
+
+                        <apex:facet name="header">  First Name</apex:facet>
+
+                    <!--    <apex:facet name="footer">column footer</apex:facet> -->
+
+                    <apex:outputText value="{!output_sorted}"/>
+
+                </apex:column>
+
+        </apex:dataTable>
+               
+                      
+        <!--
+        <apex:inputTextarea rows="10" cols="25" Label="Test Records : " value="{!output}" /> 
+        <apex:inputTextarea rows="10" cols="25" Label="Sorted Test Records : " value="{!output_sorted}" /> <br/>
+        -->
+        
+        </apex:pageBlockSection>
+      
+        <apex:pageBlockButtons >
+            
+            <apex:commandButton value="Fetch" action="{!fetch}" />
+            <apex:commandButton value="Bubble Sort" action="{!bubblesort}"/>
+              
+            </apex:pageBlockButtons>
+        </apex:pageBlock> 
+    </apex:form>
+            
+</apex:page>

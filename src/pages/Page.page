@@ -1,0 +1,12 @@
+<apex:page standardController="Account" showheader="false">
+    <apex:form >
+        <apex:pageBlock title="Get Details about an Account record" >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:inputField value="{!account.name}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

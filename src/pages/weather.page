@@ -1,0 +1,27 @@
+<apex:page showHeader="false" controller="WeatherInfo" id="page">
+  <apex:form >
+  <apex:pageBlock >  Zipcode <apex:inputText label="Zipcode" value="{!Zip}" title="Zipcode"/> 
+    
+     <apex:commandButton title="go" value="go"> 
+     
+     <apex:actionSupport event="onclick" action="{!gettemperature}" reRender="temp"/>
+     
+     
+     </apex:commandbutton></apex:pageBlock>
+    <apex:pageBlock id="temp"> 
+    
+    <b>Temperature</b> &nbsp;&nbsp; <apex:outputText value="{!temperature}" > </apex:outputText> <br/><br/>
+                               
+    &nbsp;&nbsp; <b> City </b> <apex:outputText value="{!City}" > </apex:outputText> <br/><br/>
+    
+     &nbsp;&nbsp; <b> State </b> <apex:outputText value="{!State}" > </apex:outputText> <br/><br/>
+     
+      &nbsp;&nbsp; <b> wind </b> <apex:outputText value="{!wind}" > </apex:outputText><br/><br/>
+      
+      &nbsp;&nbsp; <b> Remarks </b> <apex:outputText value="{!Remarks}" > </apex:outputText><br/><br/>
+      &nbsp;&nbsp; <b> Pressure </b> <apex:outputText value="{!Pressure}" > </apex:outputText> 
+    </apex:pageBlock>
+    
+  </apex:form>
+  
+</apex:page>

@@ -1,0 +1,26 @@
+<apex:page standardController="Contact_Infos__c" showHeader="false" extensions="ManipulateExtension">
+    <apex:form >
+    <apex:image id="theImage" url="https://c.na9.content.force.com/servlet/servlet.FileDownload?file=015E00000011uLC" width="300" height="65"/>
+        <apex:pageBlock >
+           <apex:pageBlockSection title="Manipulate Data: ">
+               <apex:inputText label="Contact Id :" value="{!Id}"/> <br/>
+               <apex:inputText label="Name :" value="{!name}"/> <br/>
+               <apex:inputText label="Address :" value="{!address}"/> <br/>
+           </apex:pageBlockSection> 
+                         
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Update" action="{!update_data}" disabled="{!isUpdateButtonDisabled}"/> 
+                <apex:commandButton value="Delete" action="{!remove}" disabled="{!isDeleteButtonDisabled}"/>
+                <apex:commandButton value="Reset" action="{!reset}" disabled="{!isResetButtonDisabled}"/>
+                <apex:commandButton value="Fetch" action="{!fetch}" disabled="{!isFetchButtonDisabled}"/>
+                <apex:commandButton value="Previous" action="{!previous}" disabled="{!isPreviousButtonDisabled}"/>
+                <apex:commandButton value="Next" action="{!next}" disabled="{!isNextButtonDisabled}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock> 
+    </apex:form>
+            <apex:pageBlock > 
+                <apex:pageBlockSection >
+                   <apex:outputText value="{!msg}" style="color:Red; font-weight:bold; font-style:italic"/> <br/>
+                </apex:pageBlockSection> 
+            </apex:pageBlock> 
+</apex:page>

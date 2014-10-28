@@ -1,0 +1,77 @@
+<apex:page standardController="Contact" recordSetVar="ContactList" extensions="tz.PContactsControllerExtension" tabStyle="PContacts__tab">
+<apex:sectionHeader title="Priority Contacts" subtitle="Home"/>
+<apex:pageMessages />
+<style type="text/css">
+    .firstPage {margin:3px 3px 0px 200px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 0 0;}
+    .prevPage {margin:3px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -10px 0;}
+    .nextPage {margin:3px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -17px 0;}
+    .lastPage {margin:3px 200px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 10px 0;}
+    .firstPage1 {margin:2px 3px 0px 200px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 0 10px;}
+    .prevPage1 {margin:2px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -10px 10px;}
+    .nextPage1 {margin:2px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -17px 10px;}
+    .lastPage1 {margin:2px 200px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 10px 10px;}
+</style>
+    <apex:form >
+        <apex:outputLabel style="font-weight:bold;margin-left:5px;margin-right:10px;" value="View:"/>
+        <apex:selectList value="{!lStatus}" size="1">
+            <apex:selectOptions value="{!lsValues}"/>
+            <apex:actionSupport event="onchange" action="{!fetchContacts}" rerender="pageBlock"/>
+        </apex:selectList>
+        <br /><br />                      
+        <apex:pageBlock id="pageBlock">
+            <apex:actionPoller action="{!refreshObjects}" rerender="pageBlock" interval="60"/>
+
+            <apex:pageBlockTable value="{!ContactList}" var="cts" rendered="{!NOT(ISNULL(ContactList))}">     
+            <apex:column headerValue="Action">
+            <apex:commandLink action="{!editContact}" value="Edit">
+                <apex:param name="ct_id" value="{!cts.Id}"/>
+            </apex:commandLink>
+            </apex:column>
+            <apex:column headerValue="Name">
+            <apex:commandLink action="{!viewContact}" value="{!cts.Name}">
+                <apex:param name="ct_id" value="{!cts.Id}"/>
+            </apex:commandLink>
+            </apex:column>
+            
+            <apex:column value="{!cts.Account.Name}" />
+            <apex:column value="{!cts.Title}" />
+            <apex:column value="{!cts.tz__Local_Time_Lst__c}">
+            
+            <apex:facet name="header">
+            <apex:commandLink reRender="pageBlock" action="{!sortObjects}" value="Local Time {!IF(sortExpression=='Local_Time_Lst__c',IF(sortDirection='ASC','↑','↓'),'')}">
+                <apex:param value="Local_Time_Lst__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+            </apex:commandLink>
+            </apex:facet>
+            </apex:column>
+            
+            <apex:column value="{!cts.Phone}" />
+            <apex:column value="{!cts.Email}" />
+            </apex:pageBlockTable>
+            <apex:panelGrid columns="8">
+            <apex:outputText >Total Contacts: {!recordTotal}</apex:outputText>
+
+            <apex:commandLink reRender="pageBlock" title="First Page" action="{!FirstObjects}">
+                <apex:image styleClass="firstPage" url="/s.gif" title="First Page" rendered="{!NOT(FirstPage)}"/>
+            </apex:commandLink> 
+            <apex:image styleClass="firstPage1" url="/s.gif" title="First Page" rendered="{!FirstPage}"/> 
+
+            <apex:commandLink reRender="pageBlock" title="Previous Page" action="{!PreviousObjects}" rendered="{!HasPrev}">
+                <apex:image styleClass="prevPage" url="/s.gif" title="Previous Page" rendered="{!HasPrev}"/> 
+            </apex:commandLink>
+            <apex:image styleClass="prevPage1" url="/s.gif" title="Previous Page" rendered="{!NOT(HasPrev)}"/> 
+            
+            <apex:commandLink reRender="pageBlock" title="Next Page" action="{!NextObjects}" rendered="{!HasNext}">
+                <apex:image styleClass="nextPage" url="/s.gif" title="Next Page" rendered="{!HasNext}"/> 
+            </apex:commandLink>
+            <apex:image styleClass="nextPage1" url="/s.gif" title="Next Page" rendered="{!NOT(HasNext)}"/> 
+
+            <apex:commandLink reRender="pageBlock" title="Last Page" action="{!LastObjects}">
+                <apex:image styleClass="lastPage" url="/s.gif" title="Last Page" rendered="{!NOT(LastPage)}"/>
+            </apex:commandLink>
+            <apex:image styleClass="lastPage1" url="/s.gif" title="Last Page" rendered="{!LastPage}"/>
+
+            <apex:outputText >Page {!PageNum} of {!PageTotal}</apex:outputText>             
+            </apex:panelGrid>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

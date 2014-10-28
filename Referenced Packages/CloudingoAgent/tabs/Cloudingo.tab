@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <icon>Cloudingo_Documents/Cloudingo_Tab_Icon_32x32.gif</icon>
+    <label>Cloudingo</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom244: TV Widescreen</motif>
+    <page>Cloudingo</page>
+</CustomTab>

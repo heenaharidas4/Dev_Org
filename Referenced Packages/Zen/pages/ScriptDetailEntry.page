@@ -1,0 +1,60 @@
+<apex:page controller="Zen.ScriptDetailController" id="scd">
+  <script>
+    function gup( name )
+    {
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( window.location.href );
+      if( results == null )
+        return "";
+      else
+        return results[1];
+    }
+    function SETSCN(){
+        try{
+        var ts=gup('ScriptNumber');
+        if(ts!='')
+        document.getElementById("{!$Component.scd.frm.pb.pgs.scrin}").value=ts;
+        
+         }
+        catch(e)
+        {
+        alert(e);
+        }
+        }
+        window.onload=SETSCN; 
+        
+  </script>
+  <apex:form id="frm">
+  <apex:pageBlock id="pb">
+         <apex:messages />
+         <apex:pageBlockButtons >
+         <apex:commandButton value="Edit Steps" action="{!Search}"/>
+         <apex:commandButton value="Save" action="{!save}"/>
+         <apex:commandButton value="Add Steps" action="{!AddStep}" reRender="detailtable"/>
+         </apex:pageBlockButtons>
+         <apex:pageBlockSection id="pgs" columns="3">
+         <apex:inputText value="{!ScriptNumber}" id="scrin"/>
+         <apex:outputField value="{!scr.Zen__Test_Script_Name__c}" />
+         <apex:outputField value="{!scr.Zen__Test_Plan__c}">
+         </apex:outputField>
+         </apex:pageBlockSection>
+         <apex:pageBlockSection columns="1" >
+         <apex:pageblockTable value="{!ScriptDetails}" var="dtl" width="100%" id="detailtable" >
+         <apex:column headerValue="Step Number">
+         <apex:inputTextarea value="{!dtl.Zen__Step_Number__c}" cols="5"/>
+         </apex:column>
+         <apex:column headerValue="Description">
+         <apex:inputTextarea value="{!dtl.Zen__Description__c}" cols="80"/>
+         </apex:column>
+         <apex:column headerValue="Expected Behavior">
+         <apex:inputTextarea value="{!dtl.Zen__Expected_Behavior__c}" cols="80"/>
+         </apex:column>
+         </apex:PageblockTable>
+         </apex:pageBlockSection>
+         
+  </apex:pageBlock>
+  </apex:form>
+  
+</apex:page>

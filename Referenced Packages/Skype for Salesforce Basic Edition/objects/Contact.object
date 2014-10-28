@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>skype_name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Skype name</label>
+        <length>128</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>InviteUserToSkype</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Invite user to Skype</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>SkypeNick = &apos;{!SUBSTITUTE(SUBSTITUTE(Contact.skype_name__c,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)}&apos;;
+FullName = &apos;{!SUBSTITUTE(SUBSTITUTE(Contact.FirstName,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)}&apos; + &apos; &apos; + &apos;{!SUBSTITUTE(SUBSTITUTE(Contact.LastName,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)}&apos;;
+
+if(SkypeNick==&apos;&apos;) {
+  window.location.replace(&quot;mai&quot; + &quot;lto:{!SUBSTITUTE(SUBSTITUTE(Contact.Email,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)}?subject=&quot; + encodeURIComponent(&quot;You&apos;re on Skype?&quot;) + &quot;&amp;body=&quot; + encodeURIComponent(&quot;Hey {!SUBSTITUTE(SUBSTITUTE(Contact.FirstName,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)},\r\nI&apos;m using Skype to make phone calls over my PC. The service is really inexpensive and includes free video calls. The quality is great. Give it a try: http://www.skype.com/go/getskype-salesforce\r\n\r\nSorry for the generic email...  it&apos;s worth the download.\r\n\r\nregards\r\n{!SUBSTITUTE(SUBSTITUTE($User.FirstName,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)} {!SUBSTITUTE(SUBSTITUTE($User.LastName,&quot;&lt;&quot;,&quot;&amp;lt;&quot;),&quot;&gt;&quot;,&quot;&amp;gt;&quot;)}&quot;)); 
+}
+else
+{
+  alert(&quot;This user already has a Skype name&quot;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Start_Skype_Conference</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Start Skype Conference</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <scontrol>Skype_Contact_start_conference</scontrol>
+    </webLinks>
+</CustomObject>

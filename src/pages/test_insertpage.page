@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:composition template="test_fetch">
+    
+    </apex:composition>
+</apex:page>

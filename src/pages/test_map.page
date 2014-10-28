@@ -1,0 +1,22 @@
+<apex:page controller="Mapping" id="thePage">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:PageBlockSection >
+                <apex:inputText Label="Contact Id" value="{!Id}" size="50"/> <br/>
+                <apex:inputTextarea value="{!Cdetail1}" label="contact detail" rows="10" cols="40" />
+            </apex:PageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Fetch" action="{!fetch}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection >
+                <apex:outputText value="{!msg}" style="color:Red; font-weight:bold; font-style:italic"/> <br/>
+            </apex:pageBlockSection> 
+            <apex:dataTable value="{!accountContactMap}" var="String" id="theTable" rowClasses="odd,even" style="color:Red; font-weight:bold; font-style:italic" cellpadding="5" cellspacing="5">
+                <apex:column >
+                    <apex:facet name="header">Contact Detail : </apex:facet>
+                    <apex:outputText value="{!accountContactMap[String]}"/><br/>
+                </apex:column>
+            </apex:dataTable> 
+        </apex:pageBlock>        
+    </apex:form>
+</apex:page>

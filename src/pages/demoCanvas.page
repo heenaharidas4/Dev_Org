@@ -1,0 +1,4 @@
+<apex:page >
+  <!--<apex:canvasApp id="democanvasapp" developerName="Demo_Canvas_App" height="400px" width="750px"/>-->
+  <apex:canvasApp id="democanvasapp" developerName="CanvasApp" height="400px" width="750px"/>
+</apex:page>

@@ -1,0 +1,44 @@
+<apex:page standardController="Zen__Scope_Item__c" extensions="Zen.ReqDocExt" showHeader="false" sidebar="false">
+<apex:form >
+<apex:pageBlock >
+<apex:commandButton action="{!ExtSaveAttachment}" value="Generate Attachment PDF"/>
+</apex:pageBlock>
+</apex:form>
+<p style="font-size: 24pt; color: blue">
+Business Requirements Document
+</p><br/>
+
+<P>Purpose of This Document</P><br/>
+<p>
+This document provides the program’s business requirement.
+It is used to identify, describe, prioritize and categorize the program’s business and functional requirements.
+This will ensure there is a way to validate the actual implementation against the agreed to requirements and 
+for confirming or developing common understanding of program requirements among the stakeholders. 
+As the program progresses, this document will need to be revised or refined to reflect approved changes to the program.
+It must follow the program’s Change Control Process.
+</p><br/>
+Document Reviewers
+<apex:dataTable value="{!Zen__Scope_Item__c.Scope_Item_Teams__r}" var="sct" title="Document Reviewers" cellpadding="1" border="2">
+<apex:column value="{!sct.Zen__User_Name__c}"/>
+<apex:column value="{!sct.Zen__Role__c}"/>
+</apex:dataTable>
+<h/>
+ <p style="font-size: 16pt; color: blue">Executive Summary</p><br/>
+ <apex:outputField value="{!Zen__Scope_Item__c.Zen__Executive_Summary__c}"/>
+ <p style="font-size: 16pt; color: blue">Business Overview</p><br/>
+ <apex:outputField value="{!Zen__Scope_Item__c.Zen__Business_Overview__c}"/>
+ <p style="font-size: 16pt; color: blue">Business Objectives</p><br/>
+ <apex:outputField value="{!Zen__Scope_Item__c.Zen__Business_Objectives__c}"/>
+ <p style="font-size: 16pt; color: blue">Business Requirements</p><br/>
+ <apex:repeat value="{!ReqList}" var="req">
+    <p style="font-size: 12pt; color: blue">
+    <apex:outputField value="{!req.Zen__Requirement_Control_Number__c}"></apex:outputField><br/>
+    <apex:outputField value="{!req.Zen__Title__c}"></apex:outputField></p><br/>
+    <apex:outputField value="{!req.Zen__Requirement_Details__c}"></apex:outputField><br/>
+    <p style="font-size: 12pt; color: blue"> Use Case </p>
+    <apex:outputField value="{!req.Zen__Use_case__c}"></apex:outputField><br/>
+    <p style="font-size: 12pt; color: blue"> Acceptance Criteria </p>
+    <apex:outputField value="{!req.Zen__Acceptance_Criteria__c}"></apex:outputField><br/>
+ </apex:repeat>
+  <p style="font-size: 14pt; color: blue">Change Control</p><br/>
+</apex:page>

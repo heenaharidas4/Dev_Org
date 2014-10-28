@@ -1,0 +1,19 @@
+<apex:page standardController="Zen__Test_Script__c">
+<p>Test Script Details</p><br/>
+<apex:pageBlock >
+<apex:PageblockSection >
+<apex:outputField value="{!Zen__Test_Script__c.Name}"/>
+<apex:outputField value="{!Zen__Test_Script__c.Zen__Test_Script_Name__c}"/>
+<apex:outputField value="{!Zen__Test_Script__c.Zen__Test_Plan_Name__c}"/>
+<apex:outputField value="{!Zen__Test_Script__c.Zen__Objective__c}"/>
+</apex:PageblockSection>
+<apex:pageBlockSection >
+<apex:pageBlockTable value="{!Zen__Test_Script__c.Test_Script_Details__r}" var="scd">
+<apex:column value="{!scd.Zen__Step_Number__c}" colspan="1" />
+<apex:column value="{!scd.Zen__Description__c}" colspan="3" />
+<apex:column value="{!scd.Zen__Expected_Behavior__c}" colspan="2" width="75"/>
+<apex:column value="{!scd.Zen__Parameters_data__c}" colspan="2" width="75"/>
+</apex:pageBlockTable>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:page>

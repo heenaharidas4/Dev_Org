@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Success Software - Local Time Application.
+Tab showing contacts prioritized by local time.</description>
+    <icon>Local_Time/LocalTime.png</icon>
+    <label>PContacts</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom107: TV Widescreen</motif>
+    <page>PContacts</page>
+</CustomTab>

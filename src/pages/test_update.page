@@ -1,0 +1,19 @@
+<apex:page standardController="Test__c" showHeader="False" extensions="UpdateExtension">
+    <apex:form >
+        <apex:pageBlock >
+           <apex:pageBlockSection title="Manipulate Data: ">
+               <apex:inputText label="Test Id :" value="{!Id}"/> <br/>
+               <apex:inputText label="First Name :" value="{!fname}"/> <br/>
+               <apex:inputText label="Last Name :" value="{!lname}"/> <br/>
+               <apex:outputText label="Error Message :" value="{!msg}"/> <br/>
+           </apex:pageBlockSection> 
+                         
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Update" action="{!update_data}" /> 
+                <apex:commandButton value="Delete" action="{!remove}"/>
+                <apex:commandButton value="Reset" action="{!reset}"/>
+                <apex:commandButton value="Fetch" action="{!fetch}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock> 
+    </apex:form>
+</apex:page>

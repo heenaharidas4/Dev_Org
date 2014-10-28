@@ -1,0 +1,29 @@
+<apex:page standardController="Profile" extensions="CheckUserProfileController" standardStylesheets="true">
+    <apex:sectionHeader title="User Profile" ></apex:sectionHeader> 
+        <apex:form >
+            <apex:pageBlock >
+                <apex:pageBlockSection title="Additional Profiles:">
+                    <apex:inputText label="Missing Profile:" value="{!Profile.Name}"/>
+                </apex:pageBlockSection>
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Add" action="{!save}"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+            
+                     
+            <apex:pageBlock >            
+                <apex:pageBlockSection title="Check Current User:">
+                    <apex:outputText label="Logged in Profile :" value="{!$Profile.Name}"/> <br/>
+                </apex:pageBlockSection>
+            
+                <apex:pageBlockSection >    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Other Profiles :" for="pro"></apex:outputLabel>
+                        <apex:selectList id="pro" value="{!Profile.Name}" size="1" title="Profile">  
+                            <apex:selectOptions value="{!pros}"></apex:selectOptions> 
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection> 
+            </apex:pageBlock> 
+        </apex:form>
+</apex:page>

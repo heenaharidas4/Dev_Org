@@ -1,0 +1,20 @@
+<apex:page standardController="User" extensions="userExtension" standardStylesheets="true">
+    <apex:form >
+        <apex:pageBlock >
+                            
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!Add}" value="Add"/>
+                
+            </apex:pageBlockButtons>
+                        
+        <apex:pageBlockSection title="Check Current User:">
+            <apex:outputText label="Logged in Profile :" value="{!$Profile.Name}"/> <br/>
+            <apex:inputText label="First Name :" value="{!fname}"/> <br/>
+            <apex:inputText label="Last Name :" value="{!lname}"/> <br/>
+        </apex:pageBlockSection>
+                
+                
+                
+            </apex:pageBlock> 
+    </apex:form>
+</apex:page>

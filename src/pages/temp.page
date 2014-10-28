@@ -1,0 +1,19 @@
+<apex:page controller="FtoCl" >
+<apex:form >
+    <apex:pageBlock title="Fahrenheit to Celsius">
+
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Convert" action="{!saveConvert}"/>
+        </apex:pageBlockButtons>
+
+        <apex:pageBlockSection >
+            <apex:inputText label="Celcius :" value="{!cvalue}"/> <br/>
+        </apex:pageBlockSection>
+            
+        <apex:pageBlockSection >
+            <apex:outputText label="Fahrenheit :" value="{!fvalue}"/> <br/>
+        </apex:pageBlockSection>
+ </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

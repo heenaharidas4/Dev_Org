@@ -1,0 +1,4 @@
+<apex:page standardController="Contact">
+  <social:profileViewer entityId="{!Contact.Id}"></social:profileViewer>
+  <chatter:feed entityId="{!Contact.Id}"/>
+</apex:page>

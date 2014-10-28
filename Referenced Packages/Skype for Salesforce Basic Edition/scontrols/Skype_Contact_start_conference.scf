@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <link  href="/dCSS/Theme2/default/common.css" type="text/css" media="handheld,print,projection,screen,tty,tv" rel="stylesheet" >
+    <script type="text/javascript" src="/js/dojo/0.3.1/dojo.js"></script>
+    <script type="text/javascript" src="/soap/ajax/8.0/connection.js" ></script>
+<script type="text/javascript">
+/*
+ * Pull a list of contacts from any list view under the contact tab, join up to 9 of them 
+ * along with the current user into a skype conference call
+
+ * use Skype_Name__c if it is found on the contact, rather than the phone number
+
+*/
+dojo.addOnLoad(init); 
+dojo.require("dojo.lang.*");                                        var debug = false;
+
+function init() { 
+    var ids = eval("{!GETRECORDIDS( $ObjectType.Contact )}"); 
+    var m =document.getElementById('main');
+    if (debug) { 
+        m.innerHTML += "ids are "+ids+"<br>";
+        m.innerHTML += window.location.href + "<br>";
+        m.innerHTML += ids.length + "<br>";
+    }    
+    
+    if (ids.length <= 0 ) { 
+        alert( "Error: You must select one or more contacts from the list view.");
+        jumpback(); 
+        return; 
+    }  
+
+    try { 
+        Contacts = sforce.connection.retrieve( "Id, Phone, Skype_Name__c ", "Contact", ids );
+    } catch(e) { 
+        Contacts = sforce.connection.retrieve( "Id, Phone", "Contact", ids );
+    }
+
+    if (debug) { 
+        dojo.lang.forEach(Contacts,function(c) {
+            m.innerHTML += Contacts.length + ', '+ c.Id + ' ' + c.Phone + ',' + c.Skype_Name__c +"<br>";
+        } );
+    }
+
+    var skypeLogo = "http://www.skype.com/i/logos/skype_logo.png";
+    var skypeLogo = "http://share.skype.com/templates/skype_sdp/i/logos/skype.png";
+//    var skypeLogo = "https://developer.skype.com/Download/SkypeIcons?action=AttachFile&do=get&target=SkypeBlue_128x128.png";
+    m.innerHTML += "<br><br>Please wait, launching Skype Conference Call..." + 
+        '<br><br><br>'+
+        '<img src="/img/waiting_dots.gif" alt="Please wait..." title="Please wait..." height="20" width="196">'+
+        '<br><br><br>'+
+        '<img src="'+ skypeLogo + '">' + 
+        '';
+
+    conCall(Contacts, 7000);  // wait time to show logo
+}
+
+function conCall(list, waitTime) { // list of contact or user beans
+    var phone = ''; 
+    for (var i in list) { 
+        var who = list[i];
+        if (!who) { next; } // if null for some reason
+        if ( who.Skype_Name__c ) { 
+            phone += who.Skype_Name__c;   
+        } else 
+        if ( who.Phone ) { 
+            phone += formatPhoneNumber(who);
+        }
+        if (i <= list.length) phone += ';'
+    }
+    
+    if (!phone) { alert( "no phone number found"); jumpback(); return; }
+    // alert("phone is >"+phone+"<") // debug
+    
+    // do this in an i frame so don't lose context in this thread
+    var win = document.getElementById("callFrame") 
+    if(!win) alert('could not get contentBody') 
+    else win.src =  "skype:" + phone + "?call";
+    setTimeout("jumpback();", waitTime); // go to our opp
+    return;
+}
+
+function formatPhoneNumber(record) { // format and return an international dialing number
+    var phone = record.get("Phone");
+    phone = phone.replace(/\D/g,''); // remove all non alpha chars
+
+    var country; 
+    try {  // contact record
+        country = record.get("MailingCountry"); } 
+    catch (e) { // user record
+        country = record.get("Country");
+    }
+    
+    var countrycode = "1" ; // default to us country code
+    // set other country codes here, TODO 
+    
+    // end set other country codes
+    
+    if (phone.length == 10) { // almost, but missing the country code
+        phone = countrycode+phone;
+    }
+    return "+" + phone;
+}
+
+function jumpback() {     window.parent.location.href = "/003/o"; }
+ 
+</script>
+</head>
+<body  >
+<div id="main"></div>
+<iframe src="" name="callFrame" id="callFrame" frameborder=0 height="0" ></iframe>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<apex:page standardController="Profile" extensions="UserProfileController" standardStylesheets="true">
+   <!-- <apex:sectionHeader title="User Profile" subtitle="{!User.Name}"></apex:sectionHeader> -->
+     <apex:form >
+        <apex:pageBlock >
+                            
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!Add}" value="Add"/>
+                
+            </apex:pageBlockButtons>
+                        
+        <apex:pageBlockSection title="Check Current User:">
+            <apex:outputText label="Logged in Profile :" value="{!$Profile.Name}"/> <br/>
+             </apex:pageBlockSection>
+            
+            </apex:pageBlock> 
+    </apex:form>
+
+</apex:page>

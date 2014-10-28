@@ -1,0 +1,96 @@
+<apex:page standardController="Lead" recordSetVar="LeadList" extensions="tz.PLeadsControllerExtension" tabStyle="PLeads__tab">
+<apex:sectionHeader title="Priority Leads" subtitle="Home"/>
+<apex:pageMessages />
+<style type="text/css">
+    .firstPage {margin:3px 3px 0px 200px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 0 0;}
+    .prevPage {margin:3px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -10px 0;}
+    .nextPage {margin:3px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -17px 0;}
+    .lastPage {margin:3px 200px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 10px 0;}
+    .firstPage1 {margin:2px 3px 0px 200px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 0 10px;}
+    .prevPage1 {margin:2px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -10px 10px;}
+    .nextPage1 {margin:2px 3px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) -17px 10px;}
+    .lastPage1 {margin:2px 200px 0px 3px;width:10px;height:10px;background:url(/img/paginationArrows.gif) 10px 10px;}
+</style>
+    <apex:form >
+        <apex:outputLabel style="font-weight:bold;margin-left:5px;margin-right:10px;" value="View:"/>
+        <apex:selectList value="{!lStatus}" size="1">
+            <apex:selectOptions value="{!lsValues}"/>
+            <apex:actionSupport event="onchange" action="{!fetchLeads}" rerender="pageBlock"/>
+        </apex:selectList>                    
+        <br /><br />                        
+        <apex:pageBlock id="pageBlock">
+            <apex:actionPoller action="{!refreshObjects}" rerender="pageBlock" interval="60"/>                   
+
+            <apex:pageBlockTable value="{!LeadList}" var="lds" rendered="{!NOT(ISNULL(LeadList))}">     
+            <apex:column headerValue="Action">
+            <apex:commandLink action="{!editLead}" value="Edit">
+                <apex:param name="ld_id" value="{!lds.Id}"/>
+            </apex:commandLink>
+            </apex:column>
+            <apex:column headerValue="Name">
+            <apex:commandLink action="{!viewLead}" value="{!lds.Name}">
+                <apex:param name="ld_id" value="{!lds.Id}"/>
+            </apex:commandLink>
+            </apex:column>
+            <apex:column value="{!lds.Company}" />
+
+            <apex:column value="{!lds.State}">
+            <apex:facet name="header">
+            <apex:commandLink reRender="pageBlock" action="{!sortObjects}" value="State {!IF(sortExpression=='State',IF(sortDirection='ASC','↑','↓'),'')}">
+                <apex:param value="State" name="column" assignTo="{!sortExpression}" ></apex:param>
+            </apex:commandLink>
+            </apex:facet>
+            </apex:column>
+            
+            <apex:column value="{!lds.Country}">
+            <apex:facet name="header">
+            <apex:commandLink reRender="pageBlock" action="{!sortObjects}" value="Country {!IF(sortExpression=='Country',IF(sortDirection='ASC','↑','↓'),'')}">
+                <apex:param value="Country" name="column" assignTo="{!sortExpression}" ></apex:param>
+            </apex:commandLink>
+            </apex:facet>
+            </apex:column>
+
+            <apex:column value="{!lds.tz__Local_Time_Lst__c}">
+            <apex:facet name="header">
+            <apex:commandLink reRender="pageBlock" action="{!sortObjects}" value="Local Time {!IF(sortExpression=='Local_Time_Lst__c',IF(sortDirection='ASC','↑','↓'),'')}">
+                <apex:param value="Local_Time_Lst__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+            </apex:commandLink>
+            </apex:facet>
+            </apex:column>
+
+            <apex:column value="{!lds.Status}">
+            <apex:facet name="header">
+            <apex:commandLink reRender="pageBlock" action="{!sortObjects}" value="Status {!IF(sortExpression=='Status',IF(sortDirection='ASC','↑','↓'),'')}">
+                <apex:param value="Status" name="column" assignTo="{!sortExpression}" ></apex:param>
+            </apex:commandLink>
+            </apex:facet>
+            </apex:column>
+            </apex:pageBlockTable>
+            <apex:panelGrid columns="8">
+            <apex:outputText >Total Leads: {!recordTotal}</apex:outputText>
+
+            <apex:commandLink reRender="pageBlock" title="First Page" action="{!FirstObjects}">
+                <apex:image styleClass="firstPage" url="/s.gif" title="First Page" rendered="{!NOT(FirstPage)}"/>
+            </apex:commandLink> 
+            <apex:image styleClass="firstPage1" url="/s.gif" title="First Page" rendered="{!FirstPage}"/> 
+
+            <apex:commandLink reRender="pageBlock" title="Previous Page" action="{!PreviousObjects}" rendered="{!HasPrev}">
+                <apex:image styleClass="prevPage" url="/s.gif" title="Previous Page" rendered="{!HasPrev}"/> 
+            </apex:commandLink>
+            <apex:image styleClass="prevPage1" url="/s.gif" title="Previous Page" rendered="{!NOT(HasPrev)}"/> 
+            
+            <apex:commandLink reRender="pageBlock" title="Next Page" action="{!NextObjects}" rendered="{!HasNext}">
+                <apex:image styleClass="nextPage" url="/s.gif" title="Next Page" rendered="{!HasNext}"/> 
+            </apex:commandLink>
+            <apex:image styleClass="nextPage1" url="/s.gif" title="Next Page" rendered="{!NOT(HasNext)}"/> 
+
+            <apex:commandLink reRender="pageBlock" title="Last Page" action="{!LastObjects}">
+                <apex:image styleClass="lastPage" url="/s.gif" title="Last Page" rendered="{!NOT(LastPage)}"/>
+            </apex:commandLink>
+            <apex:image styleClass="lastPage1" url="/s.gif" title="Last Page" rendered="{!LastPage}"/>
+
+            <apex:outputText >Page {!PageNum} of {!PageTotal}</apex:outputText>             
+            </apex:panelGrid>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

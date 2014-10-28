@@ -1,0 +1,46 @@
+<apex:page Controller="Zen.DefectsController">
+<Style>
+.High{ background-color:#F87217}
+.Medium{ background-color:#FFF8C6}
+</Style>
+    <apex:form >
+    <apex:pageBlock id="ThePageBlock">
+   <apex:panelgrid columns="5">
+    <apex:commandlink action="{!first}" rerender="TheTable, pgn"> First</apex:commandlink>
+    <apex:commandlink action="{!previous}" reRender="TheTable, pgn">  Previous</apex:commandlink>
+    <apex:commandlink action="{!next}" rendered="{!hasNext}" reRender="TheTable, pgn">  Next </apex:commandlink>
+    <apex:commandlink action="{!last}" rerender="TheTable, pgn">  Last </apex:commandlink>               
+    <apex:outputtext value="Page #{!pageNumber}" id="pgn">   
+    </apex:outputtext>         
+  </apex:panelgrid>
+   <apex:pageBlockButtons >
+  </apex:pageBlockButtons>
+  <apex:pageBlockTable value="{!DefectsList}" var="df1" rows="5" columns="6" id="TheTable">
+  <apex:column headerValue="Action" styleClass="{!df1.Zen__Priority__c}">
+    <apex:commandLink action="{!search}" reRender="detail">Select<apex:param name="dfid" value="{!df1.id}"/></apex:commandLink>
+  </apex:column>
+  <apex:column headervalue="Defect Number" styleClass="{!df1.Zen__Priority__c}">
+  <apex:outputLink value="{!URLFOR($Action.Defect__c.View, df1.id)}">{!df1.Name}</apex:outputLink>
+  </apex:column>
+  <apex:column value="{!df1.Zen__Defect_Title__c}" styleClass="{!df1.Zen__Priority__c}"/>
+  <apex:column value="{!df1.Zen__Severity__c}" styleClass="{!df1.Zen__Priority__c}"/>
+  <apex:column value="{!df1.Zen__Priority__c}" styleClass="{!df1.Zen__Priority__c}"/>
+  <apex:column value="{!df1.CreatedDate}" styleClass="{!df1.Zen__Priority__c}"/>
+  </apex:pageBlockTable>
+  <apex:outputPanel id="detail"> 
+  <table>
+      <td>
+          <apex:inputTextarea rows="10" cols="110" readonly="true" value="{!DefectDetail}"></apex:inputTextarea>
+      </td>
+      <td>
+         <apex:inputTextarea rows="10" cols="110" readonly="true" value="{!DefectComment}"></apex:inputTextarea>
+         <apex:inputTextarea rows="2" cols="110" value="{!Comment}"/>
+         <apex:commandLink action="{!addcomment}" value="Add Comment" >
+          <apex:param name="DefectId" value="{!DefectId}"/>
+          </apex:commandLink>           
+      </td>
+  </table>
+  </apex:outputPanel>
+ </apex:pageBlock>
+  </apex:form>
+</apex:page>

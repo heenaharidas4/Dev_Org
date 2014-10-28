@@ -1,0 +1,29 @@
+<apex:page standardController="Test__c" extensions="testExtension">
+<apex:form >
+        <apex:pageBlock title="Test Result">
+             <apex:pageBlockSection title="Create new record">
+                 <apex:inputfield value="{!Test__c.First_Name__c}"/>  <br/> 
+                 <apex:inputfield value="{!Test__c.Last_Name__c}"/> 
+                 <apex:commandButton value="Create" action="{!save}"/>
+             </apex:pageBlockSection>
+                
+        <apex:pageBlockButtons >
+             <apex:commandButton value="Previous" action="{!previous}"/>
+             <apex:commandButton value="Fetch" action="{!Fetch}"/>
+             <apex:commandButton value="Next" action="{!next}"/>
+        </apex:pageBlockButtons>
+                        
+               <apex:pageBlockSection title="Fetch the data you want:">
+                    <apex:inputText label="Test Id :" value="{!Id}"/> <br/>
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection Title="Output Section">
+                    <apex:inputText label="First Name :" value="{!fname}"/> <br/>
+                    <apex:inputText label="Last Name :" value="{!lname}"/> <br/>
+                </apex:pageBlockSection>
+                
+                
+                
+            </apex:pageBlock> 
+    </apex:form>
+</apex:page>

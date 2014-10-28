@@ -1,0 +1,19 @@
+<apex:page standardController="Zen__Requirement__c" extensions="Zen.CreateReqRevisionExt">
+  <apex:form >
+  <apex:pageBlock >
+  <apex:pageBlockButtons >
+  <apex:commandButton action="{!save}" value="Save"/>
+  <apex:commandButton action="{!LockReq}" value="Lock Requirement" reRender="detail"/>
+  <apex:commandButton action="{!CreateRevision}" value="Revise"/>
+  </apex:pageBlockButtons>
+  <apex:outputPanel id="detail">
+  <apex:pageBlockSection >
+  <apex:outputField value="{!Zen__Requirement__c.Zen__Requirement_Control_Number__c}"/>
+   <apex:outputField value="{!Zen__Requirement__c.Zen__Revision_Number__c}"/>
+   <apex:outputField value="{!Zen__Requirement__c.Zen__Title__c}"/>
+   <apex:outputField value="{!Zen__Requirement__c.Zen__Locked__c}"/ rendered="false">
+  </apex:pageBlockSection>
+  </apex:outputPanel>
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

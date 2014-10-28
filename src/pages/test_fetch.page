@@ -1,0 +1,20 @@
+<apex:page standardController="Test__c" showHeader="False" extensions="FetchExtension">
+    <apex:form >
+        <apex:pageBlock >
+                            
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!fetch}" value="Fetch"/>
+                <apex:commandButton value="Reset" action="{!reset}"/>
+            </apex:pageBlockButtons>
+                        
+        <apex:pageBlockSection title="Fetch the data you want:">
+            <apex:inputText label="Test Id :" value="{!Id}"/> <br/>
+            <apex:inputText label="First Name :" value="{!fname}"/> <br/>
+            <apex:inputText label="Last Name :" value="{!lname}"/> <br/>
+        </apex:pageBlockSection>
+                
+                
+                
+            </apex:pageBlock> 
+    </apex:form>
+</apex:page>

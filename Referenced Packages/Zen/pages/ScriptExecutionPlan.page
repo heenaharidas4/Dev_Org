@@ -1,0 +1,22 @@
+<apex:page controller="Zen.ScriptExecutionPlanController">
+<style>
+.passed{ background-color: #33FFCC;}
+.Failed{ background-color: #F87217 }
+</style>
+  <apex:form >
+  <apex:PageBlock >
+  <apex:commandButton action="{!search}" value="Retrieve Pending Scripts"/>
+  <apex:pageBlockTable value="{!sep}" var="se">
+    <apex:column headerValue="Run Script" styleClass="{!se.Zen__Status__c}">
+    <apex:commandLink action="{!runscript}" value="Run script" >
+    <apex:param name="scrid" value="{!se.Zen__Script_Number__c}"></apex:param>
+    <apex:param name="scpid" value="{!se.id}"></apex:param>
+    </apex:commandLink>
+  </apex:column>
+  <apex:column value="{!se.Zen__Test_Script__c}" styleClass="{!se.Zen__Status__c}"/>
+  <apex:column value="{!se.Zen__Planned_Execution_Date__c}" styleClass="{!se.Zen__Status__c}"/>
+  <apex:column value="{!se.Zen__Status__c}" styleClass="{!se.Zen__Status__c}"/>   
+  </apex:pageBlockTable>
+  </apex:PageBlock>
+  </apex:form>
+</apex:page>

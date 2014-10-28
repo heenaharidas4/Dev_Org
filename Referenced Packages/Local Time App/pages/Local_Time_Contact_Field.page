@@ -1,0 +1,13 @@
+<apex:page standardController="Contact" extensions="tz.LocalTimeController" showHeader="false" sidebar="false">
+<apex:form >  
+    <apex:actionFunction name="rTime" action="{!refreshTime}" rerender="theTime" />
+</apex:form>
+<apex:outputText id="theTime" value="{!ctTime}" styleClass="dataCol col02" />
+<script>
+function showtime() {
+setTimeout(rTime,{!freq});
+setTimeout('showtime();',{!freq});
+}
+showtime();
+</script>
+</apex:page>

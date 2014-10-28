@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Protected</customSettingsVisibility>
+    <description>Database of timezone codes and full names - accessed by the Local Time App.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Full_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Full timezone name.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Full timezone name.</inlineHelpText>
+        <label>Full Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Timezone Names</label>
+</CustomObject>

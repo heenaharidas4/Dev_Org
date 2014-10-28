@@ -1,0 +1,64 @@
+<apex:page showHeader="false"
+	showChat="false"
+	sidebar="false"
+	controller="qbdialer.IS_Basic"
+	contenttype="{!ContentType}"
+	action="{!handleSidRequest}"
+	>
+<apex:outputText value="{!SidResponse}" escape="false"/>
+<apex:pageBlock rendered="{!ISDataStore}">
+	<script type="text/javascript" src="/resource/qbdialer__c2c_resources/20121214113345/lib/jquery.min.js">
+		</script>
+	<script type="text/javascript" src="/resource/qbdialer__c2c_resources/20121214113345/lib/json2.js">
+		</script>
+	<script type="text/javascript" src="/resource/qbdialer__c2c_resources/20121214113345/lib/persist.js">
+		</script>
+	<script type="text/javascript" src="/resource/qbdialer__c2c_resources/20121214113345/lib/jquery.postmessage.js">
+		</script>
+	<script type="text/javascript" src="/resource/qbdialer__c2c_resources/20121214113345/lib/jcookie.js">
+		</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var getParameterByName = function (name) {
+				name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+				var regexS = "[\\?&]" + name + "=([^&#]*)";
+				var regex = new RegExp(regexS);
+				var results = regex.exec(window.location.search);
+				if(results == null) {
+					return "";
+				} else {
+					return decodeURIComponent(results[1].replace(/\+/g, " "));
+				}
+			}
+			var is_data_store = new Persist.Store('ISDataStore');
+			var parent_href = getParameterByName('parent_href');
+			$.pm.bind(
+				'getISData',
+				function(data) {
+					$.pm({
+						target:   window.parent,
+						url:      parent_href,
+						type:    'receiveISData',
+						data:    {callback_name: data.callback_name,data: is_data_store.get(data.store_key)}, 
+						success: function() {},
+						error:   function() {}
+					});
+				}
+			);
+			$.pm.bind("setISData", function(data) {
+				is_data_store.set(data.key, data.value);
+			});
+			if(window.parent) {
+				$.pm({
+					target: window.parent,
+					url:      parent_href,
+					type:   'storeReady',
+					data:   '',
+					success: function() {},
+					error:   function() {}
+				});
+			}
+		});
+	</script>
+</apex:pageBlock>
+</apex:page>

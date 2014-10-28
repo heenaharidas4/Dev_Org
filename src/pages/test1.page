@@ -1,0 +1,13 @@
+<apex:page standardController="Test__c">
+<apex:form >
+        <apex:pageBlock title="Test Result">
+          
+                <apex:pageBlockSection title="Create new record">
+                    <apex:inputfield value="{!Test__c.First_Name__c}"/>  
+                    <apex:inputfield value="{!Test__c.Last_Name__c}"/>
+                    <apex:commandButton value="Create" action="{!save}"/>
+                </apex:pageBlockSection>
+                
+            </apex:pageBlock> 
+    </apex:form>
+</apex:page>
